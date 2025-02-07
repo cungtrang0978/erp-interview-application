@@ -47,6 +47,7 @@ dependencies:
   objectbox_flutter_libs: any
   dart_jsonwebtoken: ^2.17.0
   flutter_dotenv: ^5.2.1
+  persistent_bottom_nav_bar: ^6.2.1
 
 dev_dependencies:
   flutter_test:

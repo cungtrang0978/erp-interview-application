@@ -7,6 +7,8 @@ import 'package:mysql_client/mysql_client.dart';
 
 import '../exceptions/login_exception.dart';
 import '../models/login_response.dart';
+import '../models/sale_order.dart';
+import '../models/sale_order_item.dart';
 import '../models/user.dart';
 
 class RemoteDatabaseService {
@@ -25,7 +27,6 @@ class RemoteDatabaseService {
 
     debugPrint("Connecting to database...");
     try {
-      //TODO: Using .env file to store sensitive information
       _conn = await MySQLConnection.createConnection(
         host: flavorSettings.mysqlHost,
         port: flavorSettings.port,
@@ -91,6 +92,45 @@ class RemoteDatabaseService {
 
       throw NetworkException(e.toString());
     }
+  }
+
+  Future<List<Map<String, String?>>> getSalesOrders() async {
+    if (_conn == null) throw Exception("Database not initialized!");
+
+    var result = await _conn!.execute("SELECT * FROM sales_orders");
+    return result.rows.map((row) => row.assoc()).toList();
+  }
+
+  // Fetch Sale Order Details & Items by ID (Including Product Name)
+  Future<SaleOrder?> getSalesOrderDetailById(int salesOrderId) async {
+    if (_conn == null) throw Exception("Database connection not initialized!");
+
+    // Fetch Sale Order Details
+    var orderResult = await _conn!.execute(
+      "SELECT * FROM sales_orders WHERE sales_order_id = :sales_order_id",
+      {"sales_order_id": salesOrderId.toString()},
+    );
+
+    if (orderResult.numOfRows == 0) return null; // Order not found
+
+    var orderData = orderResult.rows.first.assoc();
+    SaleOrder saleOrder = SaleOrder.fromJson(orderData);
+
+    // Fetch Sale Order Items (Including Product Name)
+    var itemsResult = await _conn!.execute(
+      """
+      SELECT soi.*, p.name AS product_name
+      FROM sales_order_items soi
+      JOIN products p ON soi.product_id = p.product_id
+      WHERE soi.sales_order_id = :sales_order_id
+      """,
+      {"sales_order_id": salesOrderId.toString()},
+    );
+
+    List<SaleOrderItem> items = itemsResult.rows.map((row) => SaleOrderItem.fromJson(row.assoc())).toList();
+
+    // Attach items to SaleOrder
+    return saleOrder.copyWith(items: items);
   }
 
   // Optional: Method to close the connection
