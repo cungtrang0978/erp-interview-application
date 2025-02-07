@@ -2,6 +2,7 @@ import 'package:bcrypt/bcrypt.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_interview_application/core/exceptions/network_exception.dart';
 import 'package:flutter_interview_application/core/utils/jwt_utils.dart';
+import 'package:flutter_interview_application/main.dart';
 import 'package:mysql_client/mysql_client.dart';
 
 import '../exceptions/login_exception.dart';
@@ -25,20 +26,12 @@ class RemoteDatabaseService {
     debugPrint("Connecting to database...");
     try {
       //TODO: Using .env file to store sensitive information
-      // _conn = await MySQLConnection.createConnection(
-      //   host: "localhost",
-      //   port: 3306,
-      //   userName: "root",
-      //   password: "inv3st@Mysql2025",
-      //   databaseName: "vanthang",
-      //   secure: false,
-      // );
       _conn = await MySQLConnection.createConnection(
-        host: "gw.techarrow.asia",
-        port: 30231,
-        userName: "root",
-        password: "inv3st@Mysql2025",
-        databaseName: "vanthang",
+        host: flavorSettings.mysqlHost,
+        port: flavorSettings.port,
+        userName: flavorSettings.userName,
+        password: flavorSettings.password,
+        databaseName: flavorSettings.databaseName,
         secure: false,
       );
       await _conn!.connect();
