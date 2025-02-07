@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_interview_application/core/utils/flavor_settings.dart';
-import 'package:flutter_interview_application/presentations/root/root_screen.dart';
+import 'package:flutter_interview_application/features/root/root_screen.dart';
 
 import 'core/services/local_database_service.dart';
 import 'core/services/remote_database_service.dart';
