@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_interview_application/features/sales_order/screens/create_sale_order_screen.dart';
 
 import '../controllers/sale_order_list_cubit.dart';
 import '../widgets/sale_order_widget.dart';
@@ -27,6 +28,19 @@ class _SaleOrderScreenState extends State<SaleOrderScreen> {
       create: (context) => _saleOrderListCubit,
       child: Scaffold(
         appBar: AppBar(title: Text("Sales Orders")),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final created = await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => CreateSaleOrderScreen(),
+              ),
+            ) as bool?;
+            if (created != null && created) {
+              _saleOrderListCubit.fetchSaleOrders();
+            }
+          },
+          child: Icon(Icons.add),
+        ),
         body: BlocBuilder<SaleOrderListCubit, SaleOrderListState>(
           builder: (context, state) {
             if (state is SaleOrderListLoaded) {
