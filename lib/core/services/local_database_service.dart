@@ -1,13 +1,12 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../objectbox.g.dart';
 import '../models/user.dart';
 import 'object_box.dart';
 
+@LazySingleton()
 class LocalDatabaseService {
-  LocalDatabaseService._();
-
-  static final LocalDatabaseService instance = LocalDatabaseService._();
   late final Box<User> _userBox;
   static const _storage = FlutterSecureStorage();
 

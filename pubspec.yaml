@@ -48,6 +48,9 @@ dependencies:
   dart_jsonwebtoken: ^2.17.0
   flutter_dotenv: ^5.2.1
   persistent_bottom_nav_bar: ^6.2.1
+  intl: ^0.20.2
+  injectable: ^2.5.0
+  get_it: ^8.0.3
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +64,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.13
   objectbox_generator: any
+  injectable_generator: ^2.6.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
