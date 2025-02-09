@@ -6,9 +6,9 @@ import 'package:flutter_interview_application/core/common_widgets/remember_me_ch
 import 'package:flutter_interview_application/core/common_widgets/tap_out_widget.dart';
 import 'package:flutter_interview_application/features/auth/presentation/controller/login_cubit.dart';
 
-import '../../../../core/common_widgets/password_text_form_field.dart';
-import '../../../../core/models/user.dart';
-import '../../../../dependency_injection/dependency_injection.dart';
+import '../../../../../core/common_widgets/password_text_form_field.dart';
+import '../../../../../core/models/user.dart';
+import '../../../../../dependency_injection/dependency_injection.dart';
 import '../../../main/main_screen.dart';
 import 'register_screen.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
+import 'package:flutter_interview_application/features/purchase_order/presentation/controllers/purchase_order_cubit.dart';
 import 'package:intl/intl.dart';
 
-import '../controllers/purchase_order_cubit.dart';
 import 'purchase_order_detail_screen.dart';
 
 class PurchaseOrderScreen extends StatefulWidget {

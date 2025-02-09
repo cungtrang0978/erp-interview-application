@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/models/sale_order.dart';
+import '../../../../../core/models/sale_order.dart';
 import '../../domain/repositories/sale_order_repository.dart';
 
 part 'sale_order_list_state.dart';

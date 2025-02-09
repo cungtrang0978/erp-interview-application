@@ -1,4 +1,4 @@
-import '../../../../core/models/sale_order.dart';
+import '../../../../../../core/models/sale_order.dart';
 
 abstract class SaleOrderRepository {
   Future<List<SaleOrder>> fetchAllSaleOrders();

@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/core/base/base_status.dart';
 import 'package:flutter_interview_application/core/models/user.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
+import 'package:flutter_interview_application/features/auth/presentation/controller/choose_account_cubit.dart';
 import 'package:flutter_interview_application/features/auth/presentation/page/login_screen.dart';
 
 import '../../../main/main_screen.dart';
-import '../controller/choose_account_cubit.dart';
 
 class ChooseAccountScreen extends StatefulWidget {
   const ChooseAccountScreen({super.key, required this.users});

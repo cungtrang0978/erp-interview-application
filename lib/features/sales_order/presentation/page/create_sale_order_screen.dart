@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/core/models/sale_order_item_draft.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
+import 'package:flutter_interview_application/features/sales_order/presentation/controllers/create_sale_order_cubit.dart';
+import 'package:flutter_interview_application/features/sales_order/presentation/controllers/create_sale_order_info_cubit.dart';
 
 import '../../../../core/common_widgets/amount_card.dart';
 import '../../../../core/common_widgets/custom_text_field.dart';
@@ -9,8 +11,6 @@ import '../../../../core/common_widgets/order_item_list.dart';
 import '../../../../core/models/customer.dart';
 import '../../../../core/models/sale_order.dart';
 import '../../../../core/models/sale_order_item.dart';
-import '../controllers/create_sale_order_cubit.dart';
-import '../controllers/create_sale_order_info_cubit.dart';
 import 'add_item_screen.dart';
 
 class CreateSaleOrderScreen extends StatefulWidget {

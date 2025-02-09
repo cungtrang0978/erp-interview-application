@@ -2,11 +2,10 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/core/base/base_status.dart';
 import 'package:flutter_interview_application/core/models/login_response.dart';
+import 'package:flutter_interview_application/core/models/user.dart';
 import 'package:flutter_interview_application/core/utils/jwt_utils.dart';
 import 'package:flutter_interview_application/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../../core/models/user.dart';
 
 part 'choose_account_state.dart';
 

@@ -1,8 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_interview_application/core/models/login_response.dart';
 import 'package:flutter_interview_application/core/models/user.dart';
 import 'package:flutter_interview_application/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/base/failure.dart';
 import '../datasources/auth_datasource.dart';
 
 @LazySingleton(as: AuthRepository)
@@ -23,8 +25,13 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<LoginResponse> signInWithEmail(String email, String password, bool rememberMe) async {
-    return await _authDataSource.loginUser(email, password, rememberMe);
+  Future<Either<Failure, LoginResponse>> signInWithEmail(String email, String password, bool rememberMe) async {
+    try {
+      final response = await _authDataSource.loginUser(email, password, rememberMe);
+      return Right(response);
+    } on Exception catch (e) {
+      return Left(Failure(e.toString()));
+    }
   }
 
   @override

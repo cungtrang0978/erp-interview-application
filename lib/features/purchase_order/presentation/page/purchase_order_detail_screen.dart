@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/models/purchase_order.dart';
+import '../../../../../core/models/purchase_order.dart';
 
 class PurchaseOrderDetailScreen extends StatelessWidget {
   final PurchaseOrder order;

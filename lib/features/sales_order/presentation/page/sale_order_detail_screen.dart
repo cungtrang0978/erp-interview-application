@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/core/models/sale_order_item.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
+import 'package:flutter_interview_application/features/sales_order/presentation/controllers/sale_order_detail_cubit.dart';
 
-import '../../../../core/models/sale_order.dart';
-import '../controllers/sale_order_detail_cubit.dart';
+import '../../../../../core/models/sale_order.dart';
 
 class SaleOrderDetailScreen extends StatefulWidget {
   final SaleOrder saleOrder;

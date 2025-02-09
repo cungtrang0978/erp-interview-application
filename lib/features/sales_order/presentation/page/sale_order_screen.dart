@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
+import 'package:flutter_interview_application/features/sales_order/presentation/controllers/sale_order_list_cubit.dart';
 import 'package:flutter_interview_application/features/sales_order/presentation/page/create_sale_order_screen.dart';
 
-import '../controllers/sale_order_list_cubit.dart';
 import '../widgets/sale_order_widget.dart';
 import 'sale_order_detail_screen.dart';
 

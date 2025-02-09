@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/features/purchase_order/domain/repositories/purchase_order_repository.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/models/purchase_order.dart';
+import '../../../../../core/models/purchase_order.dart';
 
 part 'purchase_order_state.dart';
 

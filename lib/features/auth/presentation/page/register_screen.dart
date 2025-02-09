@@ -5,8 +5,8 @@ import 'package:flutter_interview_application/core/utils/validator_utils.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
 import 'package:flutter_interview_application/features/auth/presentation/controller/register_cubit.dart';
 
-import '../../../../core/common_widgets/email_text_form_field.dart';
-import '../../../../core/common_widgets/password_text_form_field.dart';
+import '../../../../../core/common_widgets/email_text_form_field.dart';
+import '../../../../../core/common_widgets/password_text_form_field.dart';
 import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {

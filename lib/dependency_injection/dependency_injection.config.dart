@@ -23,6 +23,7 @@ import '../core/services/remote/services/warehouse_service.dart' as _i116;
 import '../features/auth/data/datasources/auth_datasource.dart' as _i670;
 import '../features/auth/data/repositories/auth_repository_impl.dart' as _i570;
 import '../features/auth/domain/repositories/auth_repository.dart' as _i869;
+import '../features/auth/domain/usecase/login_with_email_pw.dart' as _i463;
 import '../features/auth/presentation/controller/choose_account_cubit.dart'
     as _i289;
 import '../features/auth/presentation/controller/login_cubit.dart' as _i472;
@@ -85,10 +86,10 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i961.RemoteDatabaseService>(
-        () => _i961.RemoteDatabaseService());
     gh.lazySingleton<_i460.LocalDatabaseService>(
         () => _i460.LocalDatabaseService());
+    gh.lazySingleton<_i961.RemoteDatabaseService>(
+        () => _i961.RemoteDatabaseService());
     gh.lazySingleton<_i244.PurchaseOrderService>(
         () => _i244.PurchaseOrderService());
     gh.lazySingleton<_i822.CustomerService>(() => _i822.CustomerService());
@@ -125,8 +126,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i334.ProductRepositoryImpl(gh<_i646.ProductDataSource>()));
     gh.lazySingleton<_i205.SaleOrderRepository>(
         () => _i146.SaleOrderRepositoryImpl(gh<_i524.SaleOrderDataSource>()));
-    gh.factory<_i472.LoginCubit>(
-        () => _i472.LoginCubit(gh<_i869.AuthRepository>()));
     gh.factory<_i289.ChooseAccountCubit>(
         () => _i289.ChooseAccountCubit(gh<_i869.AuthRepository>()));
     gh.factory<_i303.RegisterCubit>(
@@ -135,6 +134,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1050.RootCubit(gh<_i869.AuthRepository>()));
     gh.factory<_i458.CreateSaleOrderInfoCubit>(
         () => _i458.CreateSaleOrderInfoCubit(gh<_i591.CustomerRepository>()));
+    gh.factory<_i463.LoginWithEmailPassword>(
+        () => _i463.LoginWithEmailPassword(gh<_i869.AuthRepository>()));
     gh.lazySingleton<_i617.InventoryRepository>(
         () => _i1045.InventoryRepositoryImpl(gh<_i14.InventoryDataSource>()));
     gh.factory<_i122.CreateSaleOrderCubit>(
@@ -145,6 +146,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i559.SaleOrderDetailCubit(gh<_i205.SaleOrderRepository>()));
     gh.lazySingleton<_i388.PurchaseOrderRepository>(() =>
         _i197.PurchaseOrderRepositoryImpl(gh<_i732.PurchaseOrderDataSource>()));
+    gh.factory<_i472.LoginCubit>(
+        () => _i472.LoginCubit(gh<_i463.LoginWithEmailPassword>()));
     gh.factory<_i615.PurchaseOrderCubit>(
         () => _i615.PurchaseOrderCubit(gh<_i388.PurchaseOrderRepository>()));
     return this;
