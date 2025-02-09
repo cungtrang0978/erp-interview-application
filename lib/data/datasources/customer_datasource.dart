@@ -1,7 +1,7 @@
-import 'package:flutter_interview_application/mysql/services/customer_service.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/models/customer.dart';
+import '../../core/services/remote/services/customer_service.dart';
 
 @LazySingleton()
 class CustomerDataSource {

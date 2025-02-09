@@ -1,7 +1,7 @@
-import 'package:flutter_interview_application/mysql/remote_database_service.dart';
+import 'package:flutter_interview_application/core/services/remote/remote_database_service.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../core/models/purchase_order.dart';
+import '../../../models/purchase_order.dart';
 
 @LazySingleton()
 class PurchaseOrderService {

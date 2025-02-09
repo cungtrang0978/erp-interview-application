@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 
-import '../../core/models/customer.dart';
+import '../../../models/customer.dart';
 import '../remote_database_service.dart';
 
 @LazySingleton()

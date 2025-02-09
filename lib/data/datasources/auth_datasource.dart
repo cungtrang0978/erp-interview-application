@@ -1,9 +1,9 @@
 import 'package:flutter_interview_application/core/models/user.dart';
-import 'package:flutter_interview_application/core/services/local_database_service.dart';
-import 'package:flutter_interview_application/mysql/services/auth_service.dart';
+import 'package:flutter_interview_application/core/services/local/local_database_service.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/models/login_response.dart';
+import '../../core/services/remote/services/auth_service.dart';
 
 @LazySingleton()
 class AuthDataSource {

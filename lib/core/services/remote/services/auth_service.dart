@@ -1,11 +1,11 @@
 import 'package:bcrypt/bcrypt.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../core/exceptions/login_exception.dart';
-import '../../core/exceptions/network_exception.dart';
-import '../../core/models/login_response.dart';
-import '../../core/models/user.dart';
-import '../../core/utils/jwt_utils.dart';
+import '../../../exceptions/login_exception.dart';
+import '../../../exceptions/network_exception.dart';
+import '../../../models/login_response.dart';
+import '../../../models/user.dart';
+import '../../../utils/jwt_utils.dart';
 import '../remote_database_service.dart';
 
 @LazySingleton()

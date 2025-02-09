@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_interview_application/core/utils/flavor_settings.dart';
 import 'package:flutter_interview_application/presentations/root/root_screen.dart';
 
-import 'core/services/local_database_service.dart';
+import 'core/services/local/local_database_service.dart';
+import 'core/services/remote/remote_database_service.dart';
 import 'dependency_injection/dependency_injection.dart';
-import 'mysql/remote_database_service.dart';
 
 late final FlavorSettings flavorSettings;
 

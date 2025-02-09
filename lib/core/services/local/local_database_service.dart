@@ -1,8 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../objectbox.g.dart';
-import '../models/user.dart';
+import '../../../objectbox.g.dart';
+import '../../models/user.dart';
 import 'object_box.dart';
 
 @LazySingleton()

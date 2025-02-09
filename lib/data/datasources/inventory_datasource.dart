@@ -1,8 +1,8 @@
 import 'package:flutter_interview_application/core/models/inventory.dart';
-import 'package:flutter_interview_application/mysql/services/inventory_service.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../core/models/sale_order_item.dart';
+import '../../core/services/remote/services/inventory_service.dart';
 
 @LazySingleton()
 class InventoryDataSource {

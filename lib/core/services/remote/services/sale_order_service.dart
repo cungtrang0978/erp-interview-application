@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
-import '../../core/models/sale_order.dart';
-import '../../core/models/sale_order_item.dart';
+import '../../../models/sale_order.dart';
+import '../../../models/sale_order_item.dart';
 import '../remote_database_service.dart';
 
 @LazySingleton()

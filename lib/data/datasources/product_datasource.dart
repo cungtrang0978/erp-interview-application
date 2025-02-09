@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 
 import '../../core/models/product.dart';
-import '../../mysql/services/product_service.dart';
+import '../../core/services/remote/services/product_service.dart';
 
 @LazySingleton()
 class ProductDataSource {

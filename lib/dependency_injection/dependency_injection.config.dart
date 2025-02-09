@@ -11,7 +11,15 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
-import '../core/services/local_database_service.dart' as _i105;
+import '../core/services/local/local_database_service.dart' as _i460;
+import '../core/services/remote/remote_database_service.dart' as _i961;
+import '../core/services/remote/services/auth_service.dart' as _i416;
+import '../core/services/remote/services/customer_service.dart' as _i822;
+import '../core/services/remote/services/inventory_service.dart' as _i540;
+import '../core/services/remote/services/product_service.dart' as _i104;
+import '../core/services/remote/services/purchase_order_service.dart' as _i244;
+import '../core/services/remote/services/sale_order_service.dart' as _i547;
+import '../core/services/remote/services/warehouse_service.dart' as _i116;
 import '../data/datasources/auth_datasource.dart' as _i645;
 import '../data/datasources/customer_datasource.dart' as _i2;
 import '../data/datasources/inventory_datasource.dart' as _i124;
@@ -33,14 +41,6 @@ import '../domain/repositories/product_repository.dart' as _i747;
 import '../domain/repositories/purchase_order_repository.dart' as _i393;
 import '../domain/repositories/sale_order_repository.dart' as _i453;
 import '../domain/repositories/warehouse_repository.dart' as _i605;
-import '../mysql/remote_database_service.dart' as _i73;
-import '../mysql/services/auth_service.dart' as _i775;
-import '../mysql/services/customer_service.dart' as _i497;
-import '../mysql/services/inventory_service.dart' as _i375;
-import '../mysql/services/product_service.dart' as _i864;
-import '../mysql/services/purchase_order_service.dart' as _i305;
-import '../mysql/services/sale_order_service.dart' as _i785;
-import '../mysql/services/warehouse_service.dart' as _i879;
 import '../presentations/choose_account/choose_account_cubit.dart' as _i144;
 import '../presentations/login/login_cubit.dart' as _i181;
 import '../presentations/purchase_order/controllers/purchase_order_cubit.dart'
@@ -67,59 +67,59 @@ extension GetItInjectableX on _i174.GetIt {
       environment,
       environmentFilter,
     );
-    gh.lazySingleton<_i105.LocalDatabaseService>(
-        () => _i105.LocalDatabaseService());
-    gh.lazySingleton<_i73.RemoteDatabaseService>(
-        () => _i73.RemoteDatabaseService());
-    gh.lazySingleton<_i305.PurchaseOrderService>(
-        () => _i305.PurchaseOrderService());
-    gh.lazySingleton<_i497.CustomerService>(() => _i497.CustomerService());
-    gh.lazySingleton<_i879.WarehouseService>(() => _i879.WarehouseService());
-    gh.lazySingleton<_i864.ProductService>(() => _i864.ProductService());
-    gh.lazySingleton<_i775.AuthService>(() => _i775.AuthService());
-    gh.lazySingleton<_i785.SaleOrderService>(() => _i785.SaleOrderService());
-    gh.lazySingleton<_i375.InventoryService>(() => _i375.InventoryService());
-    gh.lazySingleton<_i675.PurchaseOrderDataSource>(
-        () => _i675.PurchaseOrderDataSource(gh<_i305.PurchaseOrderService>()));
+    gh.lazySingleton<_i961.RemoteDatabaseService>(
+        () => _i961.RemoteDatabaseService());
+    gh.lazySingleton<_i460.LocalDatabaseService>(
+        () => _i460.LocalDatabaseService());
+    gh.lazySingleton<_i244.PurchaseOrderService>(
+        () => _i244.PurchaseOrderService());
+    gh.lazySingleton<_i822.CustomerService>(() => _i822.CustomerService());
+    gh.lazySingleton<_i116.WarehouseService>(() => _i116.WarehouseService());
+    gh.lazySingleton<_i104.ProductService>(() => _i104.ProductService());
+    gh.lazySingleton<_i416.AuthService>(() => _i416.AuthService());
+    gh.lazySingleton<_i547.SaleOrderService>(() => _i547.SaleOrderService());
+    gh.lazySingleton<_i540.InventoryService>(() => _i540.InventoryService());
+    gh.lazySingleton<_i795.ProductDataSource>(
+        () => _i795.ProductDataSource(gh<_i104.ProductService>()));
+    gh.lazySingleton<_i645.AuthDataSource>(() => _i645.AuthDataSource(
+          gh<_i416.AuthService>(),
+          gh<_i460.LocalDatabaseService>(),
+        ));
+    gh.lazySingleton<_i2.CustomerDataSource>(
+        () => _i2.CustomerDataSource(gh<_i822.CustomerService>()));
     gh.lazySingleton<_i973.WarehouseDataSource>(
-        () => _i973.WarehouseDataSource(gh<_i879.WarehouseService>()));
-    gh.lazySingleton<_i393.PurchaseOrderRepository>(() =>
-        _i256.PurchaseOrderRepositoryImpl(gh<_i675.PurchaseOrderDataSource>()));
-    gh.lazySingleton<_i124.InventoryDataSource>(
-        () => _i124.InventoryDataSource(gh<_i375.InventoryService>()));
+        () => _i973.WarehouseDataSource(gh<_i116.WarehouseService>()));
     gh.lazySingleton<_i1024.SaleOrderDataSource>(
         () => _i1024.SaleOrderDataSource(
-              gh<_i785.SaleOrderService>(),
-              gh<_i375.InventoryService>(),
+              gh<_i547.SaleOrderService>(),
+              gh<_i540.InventoryService>(),
             ));
-    gh.lazySingleton<_i795.ProductDataSource>(
-        () => _i795.ProductDataSource(gh<_i864.ProductService>()));
-    gh.lazySingleton<_i389.InventoryRepository>(
-        () => _i95.InventoryRepositoryImpl(gh<_i124.InventoryDataSource>()));
-    gh.lazySingleton<_i2.CustomerDataSource>(
-        () => _i2.CustomerDataSource(gh<_i497.CustomerService>()));
-    gh.lazySingleton<_i605.WarehouseRepository>(
-        () => _i837.WarehouseRepositoryImpl(gh<_i973.WarehouseDataSource>()));
-    gh.lazySingleton<_i645.AuthDataSource>(() => _i645.AuthDataSource(
-          gh<_i775.AuthService>(),
-          gh<_i105.LocalDatabaseService>(),
-        ));
-    gh.factory<_i1032.PurchaseOrderCubit>(
-        () => _i1032.PurchaseOrderCubit(gh<_i393.PurchaseOrderRepository>()));
+    gh.lazySingleton<_i675.PurchaseOrderDataSource>(
+        () => _i675.PurchaseOrderDataSource(gh<_i244.PurchaseOrderService>()));
+    gh.lazySingleton<_i124.InventoryDataSource>(
+        () => _i124.InventoryDataSource(gh<_i540.InventoryService>()));
     gh.lazySingleton<_i747.ProductRepository>(
         () => _i839.ProductRepositoryImpl(gh<_i795.ProductDataSource>()));
     gh.lazySingleton<_i453.SaleOrderRepository>(
         () => _i944.SaleOrderRepositoryImpl(gh<_i1024.SaleOrderDataSource>()));
     gh.lazySingleton<_i800.AuthRepository>(
         () => _i74.AuthRepositoryImpl(gh<_i645.AuthDataSource>()));
+    gh.lazySingleton<_i393.PurchaseOrderRepository>(() =>
+        _i256.PurchaseOrderRepositoryImpl(gh<_i675.PurchaseOrderDataSource>()));
+    gh.lazySingleton<_i389.InventoryRepository>(
+        () => _i95.InventoryRepositoryImpl(gh<_i124.InventoryDataSource>()));
     gh.lazySingleton<_i907.CustomerRepository>(
         () => _i334.CustomerRepositoryImpl(gh<_i2.CustomerDataSource>()));
+    gh.lazySingleton<_i605.WarehouseRepository>(
+        () => _i837.WarehouseRepositoryImpl(gh<_i973.WarehouseDataSource>()));
     gh.factory<_i591.CreateSaleOrderCubit>(
         () => _i591.CreateSaleOrderCubit(gh<_i453.SaleOrderRepository>()));
     gh.factory<_i1064.SaleOrderListCubit>(
         () => _i1064.SaleOrderListCubit(gh<_i453.SaleOrderRepository>()));
     gh.factory<_i929.SaleOrderDetailCubit>(
         () => _i929.SaleOrderDetailCubit(gh<_i453.SaleOrderRepository>()));
+    gh.factory<_i1032.PurchaseOrderCubit>(
+        () => _i1032.PurchaseOrderCubit(gh<_i393.PurchaseOrderRepository>()));
     gh.factory<_i144.ChooseAccountCubit>(
         () => _i144.ChooseAccountCubit(gh<_i800.AuthRepository>()));
     gh.factory<_i57.RegisterCubit>(
