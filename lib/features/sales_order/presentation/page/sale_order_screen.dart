@@ -46,6 +46,7 @@ class _SaleOrderScreenState extends State<SaleOrderScreen> {
           builder: (context, state) {
             if (state is SaleOrderListLoaded) {
               return ListView.builder(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                 itemCount: state.saleOrders.length,
                 itemBuilder: (context, index) {
                   var order = state.saleOrders[index];

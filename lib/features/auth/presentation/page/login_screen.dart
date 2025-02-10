@@ -1,9 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_interview_application/core/base/base_status.dart';
+import 'package:flutter_interview_application/core/common_widgets/common_elevated_button.dart';
 import 'package:flutter_interview_application/core/common_widgets/email_text_form_field.dart';
 import 'package:flutter_interview_application/core/common_widgets/remember_me_checkbox.dart';
 import 'package:flutter_interview_application/core/common_widgets/tap_out_widget.dart';
+import 'package:flutter_interview_application/core/theme/app_color.dart';
 import 'package:flutter_interview_application/features/auth/presentation/controller/login_cubit.dart';
 
 import '../../../../../core/common_widgets/password_text_form_field.dart';
@@ -45,8 +48,8 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         appBar: AppBar(title: const Text("Log In")),
         body: TapOutWidget(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
             child: Form(
               key: _formKey,
               child: Column(
@@ -61,35 +64,63 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     initialValue: rememberMe,
                   ),
-                  BlocConsumer<LoginCubit, LoginState>(
-                    listener: (context, state) {
-                      if (state.status.isSuccess) {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (_) => MainScreen()),
-                          (route) => false,
-                        );
-                      } else if (state.status.isError) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
-                      }
-                    },
-                    buildWhen: (previous, current) => previous.status.isLoading != current.status.isLoading,
-                    builder: (context, state) {
-                      if (state.status.isLoading) {
-                        return CircularProgressIndicator();
-                      }
-                      return ElevatedButton(onPressed: () => _logIn(context), child: const Text("Log In"));
-                    },
+                  SizedBox(
+                    width: double.maxFinite,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: BlocConsumer<LoginCubit, LoginState>(
+                        listener: (context, state) {
+                          if (state.status.isSuccess) {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => MainScreen()),
+                              (route) => false,
+                            );
+                          } else if (state.status.isError) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+                          }
+                        },
+                        buildWhen: (previous, current) => previous.status.isLoading != current.status.isLoading,
+                        builder: (context, state) {
+                          return CommonElevatedButton(
+                            isLoading: state.status.isLoading,
+                            onPressed: () => _logIn(context),
+                            child: const Text("Log In"),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                  TextButton(
-                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen())),
-                    child: const Text("Don't have an account? Register"),
-                  ),
+                  const SizedBox(height: 16),
+                  _buildRegisterWidget(context),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Text _buildRegisterWidget(BuildContext context) {
+    return Text.rich(
+      TextSpan(
+        text: "Don't have an account?  ",
+        children: [
+          TextSpan(
+            text: "Register",
+            style: const TextStyle(
+              decoration: TextDecoration.underline,
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: AppColor.darkBlue2,
+            ),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => const RegisterScreen()));
+              },
+          )
+        ],
       ),
     );
   }

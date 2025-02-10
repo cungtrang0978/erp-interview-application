@@ -30,6 +30,7 @@ class _SaleOrderDetailScreenState extends State<SaleOrderDetailScreen> {
       create: (context) => saleOrderDetailCubit,
       child: Scaffold(
         appBar: AppBar(title: const Text("Sale Order Details")),
+        backgroundColor: Colors.grey.shade100,
         body: BlocBuilder<SaleOrderDetailCubit, SaleOrderDetailState>(
           builder: (context, state) {
             if (state is SaleOrderDetailLoaded) {
@@ -79,7 +80,7 @@ class _SaleOrderDetailScreenState extends State<SaleOrderDetailScreen> {
       padding: const EdgeInsets.only(bottom: 8),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87),
       ),
     );
   }
@@ -113,9 +114,14 @@ class _SaleOrderDetailScreenState extends State<SaleOrderDetailScreen> {
                 margin: const EdgeInsets.symmetric(vertical: 4),
                 child: ListTile(
                   leading: const Icon(Icons.shopping_bag, color: Colors.blue),
-                  title: Text(item.productName, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: Text("Qty: ${item.quantity}  |  Unit Price: \$${item.unitPrice}"),
-                  trailing: Text("\$${item.quantity * item.unitPrice}", style: TextStyle(fontWeight: FontWeight.bold)),
+                  title: Text(item.productName,
+                      style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
+                  subtitle: Text(
+                    "Qty: ${item.quantity}  |  Unit Price: \$${item.unitPrice}",
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  trailing: Text("\$${item.quantity * item.unitPrice}",
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
                 ),
               ))
           .toList(),

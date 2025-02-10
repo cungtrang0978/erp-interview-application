@@ -21,11 +21,11 @@ class _PurchaseOrderScreenState extends State<PurchaseOrderScreen> {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'CONFIRMED':
-        return Colors.blue;
+        return Colors.blue.shade300;
       case 'RECEIVED':
-        return Colors.green;
+        return Colors.green.shade300;
       case 'CANCELLED':
-        return Colors.red;
+        return Colors.red.shade300;
       default:
         return Colors.grey;
     }
@@ -94,7 +94,7 @@ class _PurchaseOrderScreenState extends State<PurchaseOrderScreen> {
           },
           icon: const Icon(Icons.add),
           label: const Text("New Order"),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.blue.shade300,
         ),
       ),
     );

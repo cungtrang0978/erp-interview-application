@@ -11,14 +11,13 @@ class AmountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      margin: const EdgeInsets.symmetric(vertical: 5),
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: color)),
-            Text("\$$value", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: color)),
+            Text(label, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: color ?? Colors.black54)),
+            Text("\$$value", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: color ?? Colors.black)),
           ],
         ),
       ),

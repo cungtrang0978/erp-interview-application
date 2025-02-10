@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_interview_application/core/theme/app_color.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../inventory/presentation/page/inventory_screen.dart';
@@ -16,12 +17,14 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
-  List<Widget> _buildScreens() {
+  List<Widget> _buildScreens(BuildContext context) {
     return [
       SaleOrderScreen(),
       PurchaseOrderScreen(),
       InventoryScreen(),
-      SettingsScreen(),
+      SettingsScreen(
+        parentContext: context,
+      ),
     ];
   }
 
@@ -30,25 +33,25 @@ class _MainScreenState extends State<MainScreen> {
       PersistentBottomNavBarItem(
         icon: Icon(Icons.shopping_cart),
         title: "Sale Order",
-        activeColorPrimary: Colors.blue,
+        activeColorPrimary: AppColor.blue,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.receipt),
         title: "Purchase Order",
-        activeColorPrimary: Colors.green,
+        activeColorPrimary: AppColor.blue,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.inventory),
         title: "Inventory",
-        activeColorPrimary: Colors.orange,
+        activeColorPrimary: AppColor.blue,
         inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: Icon(Icons.settings),
         title: "Settings",
-        activeColorPrimary: Colors.purple,
+        activeColorPrimary: AppColor.blue,
         inactiveColorPrimary: Colors.grey,
       ),
     ];
@@ -59,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
     return PersistentTabView(
       context,
       controller: _controller,
-      screens: _buildScreens(),
+      screens: _buildScreens(context),
       items: _navBarsItems(),
       navBarStyle: NavBarStyle.style3, // Change style if needed
     );

@@ -15,7 +15,8 @@ class ChooseAccountCubit extends Cubit<ChooseAccountState> {
 
   ChooseAccountCubit(this._authRepository) : super(ChooseAccountState.initial());
 
-  void init(List<User> users) async {
+  void init(List<User>? users) async {
+    users ??= _authRepository.getLocalUsers();
     final accounts = <LoginResponse>[];
     for (final user in users) {
       final token = await _authRepository.getJwtByUser(user);

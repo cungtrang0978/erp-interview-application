@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_interview_application/core/common_widgets/common_elevated_button.dart';
 import 'package:flutter_interview_application/core/models/sale_order_item_draft.dart';
+import 'package:flutter_interview_application/core/theme/app_color.dart';
 import 'package:flutter_interview_application/dependency_injection/dependency_injection.dart';
 import 'package:flutter_interview_application/features/sales_order/presentation/controllers/create_sale_order_cubit.dart';
 import 'package:flutter_interview_application/features/sales_order/presentation/controllers/create_sale_order_info_cubit.dart';
@@ -149,24 +151,36 @@ class _CreateSaleOrderScreenState extends State<CreateSaleOrderScreen> {
                     );
                   },
                 ),
+                const SizedBox(height: 8),
                 CustomTextField(label: "Shipping Address", controller: _shippingAddressController),
+                const SizedBox(height: 8),
                 CustomTextField(label: "Billing Address", controller: _billingAddressController),
+                const SizedBox(height: 8),
                 CustomTextField(label: "Payment Terms", controller: _paymentTermsController),
+                const SizedBox(height: 8),
                 CustomTextField(
                   label: "Tax Amount (USD)",
                   controller: _taxAmountController,
                   keyboardType: TextInputType.number,
                   onChanged: (_) => _calculateAmounts(),
                 ),
+                const SizedBox(height: 8),
                 CustomTextField(
                   label: "Shipping Amount (USD)",
                   controller: _shippingAmountController,
                   keyboardType: TextInputType.number,
                   onChanged: (_) => _calculateAmounts(),
                 ),
-                const SizedBox(height: 10),
-                ElevatedButton(onPressed: () => _addItem(context), child: const Text("Add Item")),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: CommonElevatedButton(
+                    height: 40,
+                    onPressed: () => _addItem(context),
+                    child: const Text("Add Item +"),
+                  ),
+                ),
+                const SizedBox(height: 12),
                 OrderItemList(
                   items: _items,
                   onRemove: (index) {
@@ -178,7 +192,7 @@ class _CreateSaleOrderScreenState extends State<CreateSaleOrderScreen> {
                 ),
                 const SizedBox(height: 20),
                 AmountCard(label: "Sub Amount", value: _subAmountController.text),
-                AmountCard(label: "Total Amount", value: _totalAmountController.text, color: Colors.green),
+                AmountCard(label: "Total Amount", value: _totalAmountController.text, color: AppColor.blue),
                 const SizedBox(height: 20),
                 BlocConsumer<CreateSaleOrderCubit, CreateSaleOrderState>(
                   listener: (context, state) {
@@ -191,7 +205,14 @@ class _CreateSaleOrderScreenState extends State<CreateSaleOrderScreen> {
                     }
                   },
                   builder: (context, state) {
-                    return ElevatedButton(onPressed: () => _submitOrder(context), child: const Text("Submit Order"));
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4),
+                      child: SizedBox(
+                        width: double.maxFinite,
+                        child: CommonElevatedButton(
+                            onPressed: () => _submitOrder(context), child: const Text("Submit Order")),
+                      ),
+                    );
                   },
                 ),
               ],

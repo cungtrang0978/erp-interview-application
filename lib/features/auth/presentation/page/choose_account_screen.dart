@@ -9,9 +9,9 @@ import 'package:flutter_interview_application/features/auth/presentation/page/lo
 import '../../../main/main_screen.dart';
 
 class ChooseAccountScreen extends StatefulWidget {
-  const ChooseAccountScreen({super.key, required this.users});
+  const ChooseAccountScreen({super.key, this.users});
 
-  final List<User> users;
+  final List<User>? users;
 
   @override
   State<ChooseAccountScreen> createState() => _ChooseAccountScreenState();

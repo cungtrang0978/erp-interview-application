@@ -48,7 +48,7 @@ class SaleOrderWidget extends StatelessWidget {
                     children: [
                       Text(
                         "Order #${order.salesOrderId}",
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black),
                       ),
                       Text("Customer: ID ${order.customerId}",
                           style: const TextStyle(fontSize: 12, color: Colors.black54)),

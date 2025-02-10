@@ -142,6 +142,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       decoration: const InputDecoration(labelText: "Select Product"),
                       validator: (value) => value == null ? "Please select a product" : null,
                     ),
+                    const SizedBox(height: 8),
                     DropdownButtonFormField<Warehouse>(
                       value: _selectedWarehouse,
                       items: _warehouses.map((warehouse) {
@@ -159,9 +160,10 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       decoration: const InputDecoration(labelText: "Select Warehouse"),
                       validator: (value) => value == null ? "Please select a warehouse" : null,
                     ),
+                    const SizedBox(height: 8),
                     if (_inventory != null)
                       Padding(
-                        padding: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.only(bottom: 8),
                         child: Text("Available Stock: ${_inventory!.quantityOnHand - _inventory!.quantityReserved}",
                             style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.green)),
                       ),
@@ -171,6 +173,7 @@ class _AddItemScreenState extends State<AddItemScreen> {
                       keyboardType: TextInputType.number,
                       validator: _validateQuantity,
                     ),
+                    const SizedBox(height: 8),
                     TextFormField(
                       controller: _unitPriceController,
                       decoration: const InputDecoration(labelText: "Unit Price", suffixText: "USD"),

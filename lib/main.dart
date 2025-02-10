@@ -4,6 +4,7 @@ import 'package:flutter_interview_application/features//root/root_screen.dart';
 
 import 'core/services/local/local_database_service.dart';
 import 'core/services/remote/remote_database_service.dart';
+import 'core/theme/app_theme.dart';
 import 'dependency_injection/dependency_injection.dart';
 
 late final FlavorSettings flavorSettings;
@@ -26,10 +27,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter MySQL Auth',
-      theme: ThemeData(
-        colorSchemeSeed: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-      ),
+      // theme: ThemeData(
+      //   colorSchemeSeed: Colors.blue,
+      //   scaffoldBackgroundColor: Colors.white,
+      // ),
+      // themeMode: ThemeMode.dark,
+      darkTheme: darkTheme,
       home: RootScreen(),
     );
   }

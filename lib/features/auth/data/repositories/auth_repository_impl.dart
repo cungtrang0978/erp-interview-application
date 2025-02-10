@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_interview_application/core/exceptions/login_exception.dart';
 import 'package:flutter_interview_application/core/models/login_response.dart';
 import 'package:flutter_interview_application/core/models/user.dart';
 import 'package:flutter_interview_application/features/auth/domain/repositories/auth_repository.dart';
@@ -29,6 +30,8 @@ class AuthRepositoryImpl implements AuthRepository {
     try {
       final response = await _authDataSource.loginUser(email, password, rememberMe);
       return Right(response);
+    } on LoginException catch (e) {
+      return Left(Failure(e.message));
     } on Exception catch (e) {
       return Left(Failure(e.toString()));
     }
