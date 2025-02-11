@@ -68,6 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     listener: (context, state) {
                       if (state is RegisterSuccess) {
                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Registration successful')));
                       } else if (state is RegisterError) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
                       }

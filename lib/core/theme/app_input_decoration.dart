@@ -17,44 +17,44 @@ class AppInputDecoration {
   // );
 
   static final defaultDec = InputDecorationTheme(
-      fillColor: Colors.white,
-      filled: true,
-      contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: _borderRadius,
-        borderSide: const BorderSide(
-          color: AppColor.lightGrey4,
-          width: 1,
-        ),
+    fillColor: Colors.white,
+    filled: true,
+    contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: _borderRadius,
+      borderSide: const BorderSide(
+        color: AppColor.lightGrey4,
+        width: 1,
       ),
-      // labelStyle: const TextStyle(color: AppColor.white),
-      floatingLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: _borderRadius,
-        borderSide: const BorderSide(
-          // color: AppColor.blue,
-          width: 1,
-        ),
+    ),
+    // labelStyle: const TextStyle(color: AppColor.white),
+    floatingLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: _borderRadius,
+      borderSide: const BorderSide(
+        // color: AppColor.blue,
+        width: 1,
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: _borderRadius,
-        borderSide: const BorderSide(
-          color: AppColor.redError,
-          width: 1,
-        ),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: _borderRadius,
+      borderSide: const BorderSide(
+        color: AppColor.redError,
+        width: 1,
       ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: _borderRadius,
-        borderSide: const BorderSide(
-          color: AppColor.redError,
-          width: 1,
-        ),
+    ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: _borderRadius,
+      borderSide: const BorderSide(
+        color: AppColor.redError,
+        width: 1,
       ),
-      suffixIconColor: AppColor.grey,
-      errorMaxLines: 4,
-      hintStyle: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14)
-      // errorStyle: const TextStyle(fontSize: 0),
-      );
+    ),
+    suffixIconColor: AppColor.grey,
+    errorMaxLines: 4,
+    hintStyle: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: AppColor.lightGrey4),
+    // errorStyle: const TextStyle(fontSize: 0),
+  );
 
   static noneBorderDec({Color? fillColor}) => InputDecorationTheme(
         contentPadding: const EdgeInsets.symmetric(vertical: 13.5, horizontal: 20),

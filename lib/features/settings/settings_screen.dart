@@ -18,7 +18,15 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CommonOutlinedButton(height: 48, child: Text("Change Account"), onPressed: () {}),
+            CommonOutlinedButton(
+                height: 48,
+                child: Text("Change Account"),
+                onPressed: () {
+                  Navigator.of(parentContext).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => ChooseAccountScreen()),
+                    (route) => false,
+                  );
+                }),
             const SizedBox(height: 16),
             CommonElevatedButton(
                 child: Text("Log Out"),

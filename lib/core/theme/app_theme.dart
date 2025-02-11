@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'app_color.dart';
 import 'app_input_decoration.dart';
 
-ThemeData darkTheme = ThemeData(
+ThemeData theme = ThemeData(
   colorSchemeSeed: Colors.blue,
   scaffoldBackgroundColor: Colors.grey.shade100,
-
+  hintColor: AppColor.lightGrey,
   // brightness: Brightness.dark,
   // primaryColor: AppColor.red,
   // primarySwatch: Colors.red,
