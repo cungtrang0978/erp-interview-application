@@ -32,28 +32,29 @@ class _ChooseAccountScreenState extends State<ChooseAccountScreen> {
     return BlocProvider(
       create: (context) => _chooseAccountCubit,
       child: Scaffold(
-        appBar: AppBar(
-          title: FlutterLogo(
-            size: 40,
-          ),
-          centerTitle: true,
-        ),
         body: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Column(
               children: [
-                Text('Choose an account', style: Theme.of(context).textTheme.headlineMedium),
-                const SizedBox(height: 20),
+                FlutterLogo(
+                  size: 40,
+                ),
+                const SizedBox(height: 16),
+                Text('Choose an account',
+                    style: Theme.of(context).textTheme.headlineMedium),
+                const SizedBox(height: 16),
                 BlocConsumer<ChooseAccountCubit, ChooseAccountState>(
                   listener: (context, state) {
                     if (state.status.isSuccess) {
                       Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => const MainScreen()),
+                        MaterialPageRoute(
+                            builder: (context) => const MainScreen()),
                         (route) => false,
                       );
                     } else if (state.status.isError) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.error.toString())));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(state.error.toString())));
                     }
                   },
                   builder: (context, state) {
@@ -84,7 +85,8 @@ class _ChooseAccountScreenState extends State<ChooseAccountScreen> {
                                           )),
                                 );
                               } else {
-                                BlocProvider.of<ChooseAccountCubit>(context).selectUser(state.accounts[i]);
+                                BlocProvider.of<ChooseAccountCubit>(context)
+                                    .selectUser(state.accounts[i]);
                               }
                             },
                           ),
@@ -95,7 +97,8 @@ class _ChooseAccountScreenState extends State<ChooseAccountScreen> {
                             child: Icon(Icons.person_add_alt),
                           ),
                           onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginScreen()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const LoginScreen()));
                           },
                         )
                       ],
@@ -112,7 +115,8 @@ class _ChooseAccountScreenState extends State<ChooseAccountScreen> {
 }
 
 class CircleAvatarWithRandomColorWidget extends StatelessWidget {
-  const CircleAvatarWithRandomColorWidget({super.key, required this.child, required this.index});
+  const CircleAvatarWithRandomColorWidget(
+      {super.key, required this.child, required this.index});
 
   final Widget child;
   final int index;

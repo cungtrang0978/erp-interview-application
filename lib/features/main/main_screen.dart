@@ -15,56 +15,110 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
+  final PersistentTabController _controller =
+      PersistentTabController(initialIndex: 0);
 
   List<Widget> _buildScreens(BuildContext context) {
     return [
-      SaleOrderScreen(),
-      PurchaseOrderScreen(),
-      InventoryScreen(),
-      SettingsScreen(
-        parentContext: context,
-      ),
+      const SaleOrderScreen(),
+      const PurchaseOrderScreen(),
+      const InventoryScreen(),
+      SettingsScreen(parentContext: context),
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.shopping_cart),
-        title: "Sale Order",
-        activeColorPrimary: AppColor.blue,
-        inactiveColorPrimary: Colors.grey,
+      _buildNavItem(
+        icon: Icons.shopping_cart_outlined,
+        activeIcon: Icons.shopping_cart,
+        title: "Sales",
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.receipt),
-        title: "Purchase Order",
-        activeColorPrimary: AppColor.blue,
-        inactiveColorPrimary: Colors.grey,
+      _buildNavItem(
+        icon: Icons.receipt_long_outlined,
+        activeIcon: Icons.receipt_long,
+        title: "Purchase",
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.inventory),
+      _buildNavItem(
+        icon: Icons.inventory_2_outlined,
+        activeIcon: Icons.inventory_2,
         title: "Inventory",
-        activeColorPrimary: AppColor.blue,
-        inactiveColorPrimary: Colors.grey,
       ),
-      PersistentBottomNavBarItem(
-        icon: Icon(Icons.settings),
+      _buildNavItem(
+        icon: Icons.settings_outlined,
+        activeIcon: Icons.settings,
         title: "Settings",
-        activeColorPrimary: AppColor.blue,
-        inactiveColorPrimary: Colors.grey,
       ),
     ];
   }
 
+  PersistentBottomNavBarItem _buildNavItem({
+    required IconData icon,
+    required IconData activeIcon,
+    required String title,
+  }) {
+    return PersistentBottomNavBarItem(
+      icon: Icon(
+        icon,
+        size: 22,
+      ),
+      title: title,
+      activeColorPrimary: AppColor.blue,
+      inactiveColorPrimary: Colors.grey.shade400,
+      iconSize: 22,
+      textStyle: const TextStyle(
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PersistentTabView(
-      context,
-      controller: _controller,
-      screens: _buildScreens(context),
-      items: _navBarsItems(),
-      navBarStyle: NavBarStyle.style3, // Change style if needed
+    return Scaffold(
+      body: PersistentTabView(
+        context,
+        controller: _controller,
+        screens: _buildScreens(context),
+        items: _navBarsItems(),
+        navBarStyle: NavBarStyle.style1,
+        // Modern floating style
+        backgroundColor: Colors.white,
+        // decoration: NavBarDecoration(
+        //   borderRadius: BorderRadius.circular(20),
+        //   boxShadow: [
+        //     BoxShadow(
+        //       color: Colors.black.withAlpha(20),
+        //       blurRadius: 10,
+        //       offset: const Offset(0, -2),
+        //     ),
+        //   ],
+        // ),
+        navBarHeight: 65,
+        padding: EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 8,
+        ),
+        hideNavigationBarWhenKeyboardAppears: true,
+        animationSettings: NavBarAnimationSettings(
+          // screenTransitionAnimation: ScreenTransitionAnimationSettings(
+          //   animateTabTransition: true,
+          //   curve: Curves.easeInOut,
+          //   duration: Duration(milliseconds: 200),
+          // ),
+          navBarItemAnimation: ItemAnimationSettings(
+            duration: Duration(milliseconds: 200),
+            curve: Curves.easeInOut,
+          ),
+        ),
+        // floatingActionButton: _buildFloatingActionButton(),
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }

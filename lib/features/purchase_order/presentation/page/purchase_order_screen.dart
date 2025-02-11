@@ -85,16 +85,16 @@ class _PurchaseOrderScreenState extends State<PurchaseOrderScreen> {
             return const Center(child: Text("No purchase orders found"));
           },
         ),
-        floatingActionButton: FloatingActionButton.extended(
+        floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(builder: (context) => const CreatePurchaseOrderScreen()),
             // );
           },
-          icon: const Icon(Icons.add),
-          label: const Text("New Order"),
-          backgroundColor: Colors.blue.shade300,
+          // label: const Text("New Order"),
+          // backgroundColor: Colors.blue.shade300,
+          child: const Icon(Icons.add),
         ),
       ),
     );
