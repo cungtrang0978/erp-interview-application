@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_interview_application/core/base/failure.dart';
 import 'package:flutter_interview_application/core/base/use_case.dart';
-import 'package:flutter_interview_application/core/models/login_response.dart';
+import 'package:flutter_interview_application/features/auth/domain/entities/login_response.dart';
 import 'package:injectable/injectable.dart';
 
 import '../repositories/auth_repository.dart';

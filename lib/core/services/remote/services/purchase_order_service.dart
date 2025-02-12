@@ -6,7 +6,7 @@ import '../../../models/purchase_order.dart';
 @LazySingleton()
 class PurchaseOrderService {
   Future<List<PurchaseOrder>> getPurchaseOrders() async {
-    final result = await RemoteDatabaseService.conn!.execute("SELECT * FROM purchase_orders");
+    final result = await RemoteDatabaseService.execute("SELECT * FROM purchase_orders");
     return result.rows.map((row) => PurchaseOrder.fromJson(row.assoc())).toList();
   }
 }

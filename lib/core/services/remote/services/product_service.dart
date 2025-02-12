@@ -7,9 +7,7 @@ import '../../../models/product.dart';
 class ProductService {
   /// 1️⃣ Fetch Products
   Future<List<Product>> getProducts() async {
-    if (RemoteDatabaseService.conn == null) throw Exception("Database connection not initialized!");
-
-    var result = await RemoteDatabaseService.conn!.execute("""
+    var result = await RemoteDatabaseService.execute("""
     SELECT p.*, c.name AS category_name 
     FROM products p 
     LEFT JOIN product_categories c ON p.category_id = c.category_id

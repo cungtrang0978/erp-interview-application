@@ -11,7 +11,7 @@ class ValidatorUtils {
   static String? password(String? password) {
     if (password == null || password.isEmpty) return "Password is required";
     final RegExp passwordRegex = RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$');
-    return passwordRegex.hasMatch(password) ? null : "";
+    return passwordRegex.hasMatch(password) ? null : "The password must be at least 6 characters long and must contain at least 1 letter and 1 digit";
   }
 
   static String? confirmPassword(String? password, String? confirmPassword) {

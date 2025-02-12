@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_interview_application/core/exceptions/login_exception.dart';
-import 'package:flutter_interview_application/core/models/login_response.dart';
+import 'package:flutter_interview_application/features/auth/domain/entities/login_response.dart';
 import 'package:flutter_interview_application/core/models/user.dart';
 import 'package:flutter_interview_application/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
@@ -26,9 +26,11 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, LoginResponse>> signInWithEmail(String email, String password, bool rememberMe) async {
+  Future<Either<Failure, LoginResponse>> signInWithEmail(
+      String email, String password, bool rememberMe) async {
     try {
-      final response = await _authDataSource.loginUser(email, password, rememberMe);
+      final response =
+          await _authDataSource.loginUser(email, password, rememberMe);
       return Right(response);
     } on LoginException catch (e) {
       return Left(Failure(e.message));
@@ -44,7 +46,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<bool> signUpWithEmail(String email, String password, String name) async {
+  Future<void> signUpWithEmail(
+      String email, String password, String name) async {
     return await _authDataSource.registerUser(email, password, name);
   }
 

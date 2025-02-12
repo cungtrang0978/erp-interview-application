@@ -7,18 +7,12 @@ import '../remote_database_service.dart';
 @LazySingleton()
 class SaleOrderService {
   Future<List<SaleOrder>> getSalesOrders() async {
-    if (RemoteDatabaseService.conn == null) throw Exception("Database not initialized!");
-
-    var result = await RemoteDatabaseService.conn!.execute("SELECT * FROM sales_orders ORDER BY order_date DESC");
+    var result = await RemoteDatabaseService.execute("SELECT * FROM sales_orders ORDER BY order_date DESC");
     return result.rows.map((row) => SaleOrder.fromJson(row.assoc())).toList();
   }
 
   Future<SaleOrder?> getSaleOrderById(int salesOrderId) async {
-    if (RemoteDatabaseService.conn == null) {
-      throw Exception("Database RemoteDatabaseService.connection not initialized!");
-    }
-
-    var orderResult = await RemoteDatabaseService.conn!.execute(
+    var orderResult = await RemoteDatabaseService.execute(
       "SELECT * FROM sales_orders WHERE sales_order_id = :sales_order_id",
       {"sales_order_id": salesOrderId.toString()},
     );
@@ -29,11 +23,7 @@ class SaleOrderService {
   }
 
   Future<List<SaleOrderItem>> getSalesOrderItems(int salesOrderId) async {
-    if (RemoteDatabaseService.conn == null) {
-      throw Exception("Database RemoteDatabaseService.connection not initialized!");
-    }
-
-    var itemsResult = await RemoteDatabaseService.conn!.execute(
+    var itemsResult = await RemoteDatabaseService.execute(
       """
       SELECT soi.*, p.name AS product_name
       FROM sales_order_items soi
@@ -48,7 +38,7 @@ class SaleOrderService {
 
   /// **1️⃣ Insert Sale Order and Return Order ID**
   Future<int> insertSaleOrder(SaleOrder saleOrder) async {
-    var result = await RemoteDatabaseService.conn!.execute(
+    var result = await RemoteDatabaseService.execute(
       """
       INSERT INTO sales_orders (customer_id, order_date, expected_delivery_date, status, 
         shipping_address, billing_address, payment_terms, currency, total_amount, tax_amount, 
@@ -77,7 +67,7 @@ class SaleOrderService {
 
   /// **2️⃣ Insert Sale Order Item**
   Future<void> insertSaleOrderItem(int orderId, SaleOrderItem item) async {
-    await RemoteDatabaseService.conn!.execute(
+    await RemoteDatabaseService.execute(
       """
       INSERT INTO sales_order_items (sales_order_id, product_id, quantity, unit_price, discount_percentage, 
         tax_percentage, warehouse_id, status) 

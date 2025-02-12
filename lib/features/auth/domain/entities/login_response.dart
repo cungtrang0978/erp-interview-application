@@ -1,4 +1,4 @@
-import 'user.dart';
+import 'package:flutter_interview_application/core/models/user.dart';
 
 class LoginResponse {
   final String token;

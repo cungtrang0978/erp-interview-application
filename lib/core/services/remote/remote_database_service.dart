@@ -7,7 +7,7 @@ import 'package:mysql_client/mysql_client.dart';
 class RemoteDatabaseService {
   static MySQLConnection? conn;
 
-  Future<void> init() async {
+  static Future<void> init() async {
     if (conn != null) return; // Prevent multiple initializations
 
     debugPrint("Connecting to database...");
@@ -20,7 +20,7 @@ class RemoteDatabaseService {
         databaseName: flavorSettings.databaseName,
         secure: false,
       );
-      await conn!.connect();
+      await conn!.connect(timeoutMs: 3600000);
       debugPrint("Connected to database.");
     } catch (e) {
       debugPrint("Error connecting to database: $e");
@@ -28,8 +28,24 @@ class RemoteDatabaseService {
     }
   }
 
+  static Future<void> checkConnection() async {
+    if (!conn!.connected) {
+      conn = null;
+      await init();
+    }
+  }
+
+  static Future<IResultSet> execute(
+    String query, [
+    Map<String, dynamic>? params,
+    bool iterable = false,
+  ]) async {
+    await checkConnection();
+    return await conn!.execute(query, params, iterable);
+  }
+
   /// Optional: Method to close the connection
-  Future<void> dispose() async {
+  static Future<void> dispose() async {
     await conn?.close();
     conn = null;
   }

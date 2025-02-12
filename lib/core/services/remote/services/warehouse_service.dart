@@ -7,9 +7,8 @@ import '../../../models/warehouse.dart';
 class WarehouseService {
   /// 2️⃣ Fetch Warehouses
   Future<List<Warehouse>> getWarehouses() async {
-    if (RemoteDatabaseService.conn == null) throw Exception("Database connection not initialized!");
-
-    var result = await RemoteDatabaseService.conn!.execute("SELECT * FROM warehouses");
+    var result =
+        await RemoteDatabaseService.execute("SELECT * FROM warehouses");
 
     return result.rows.map((row) => Warehouse.fromJson(row.assoc())).toList();
   }
